@@ -6,7 +6,7 @@ buffer:                 equ 0xdb08                      ;
 byte_count:             equ 0xdb03                      ;
 current_value:          equ 0xdb06                      ;
 current_location:       equ 0xdb00                      ;
-origin_point:                 equ 0x0000                      ;
+origin_point:                 equ 00000h                      ;
 
 write_string:           in a,(3)                        ;
 and                     001h                            ;
@@ -248,6 +248,7 @@ clear_string            defm "clear",0                  ;
 exit_string             defm "exit",0                   ;
 
 
+
 ; jumps
 no_match_jump:          ld hl,no_match_msg              ;
 call                    write_string                    ;
@@ -280,7 +281,7 @@ jp                      begin_ZDOS                      ;
 
 
 exit_jump:              call cls                        ;
-jp                      origin_point
+jp      $0471
 ; Memory dump
 ; Displays a 256-byte block of memory in 16-byte rows.
 ; Called with address of start of block in HL
@@ -400,6 +401,7 @@ hex_to_nybble_err:      ld a,0ffh                       ; error value
 help_jump:              ld hl,commands                  ;
 call                    write_string                    ;
 jp                      begin_ZDOS                      ;
+
 
 
 
