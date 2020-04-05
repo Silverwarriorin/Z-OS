@@ -402,7 +402,6 @@ address_entry:          ld hl,buffer                    ; location for entered s
                         ret                             ;
 address_entry_error:    ld hl,address_error_msg         ;
                         call write_string               ;
-call                    write_newline
                         jp address_entry                ;
 
 

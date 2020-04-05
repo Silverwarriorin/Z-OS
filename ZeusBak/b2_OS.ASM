@@ -265,7 +265,6 @@ address_entry_msg:      defm "| Enter 4 digit memory address                    
 
 
 
-
 downline:               ld a,00Dh                       ;
 call                    write_char                      ;
 ld                      a,00Ah                          ;
@@ -310,9 +309,6 @@ call                    write_string                    ;
 call                    write_newline                   ;
                         ld hl,address_entry_msg         ; get ready to get address
                         call write_string               ;
-call                    write_newline                   ;
-ld                      hl,bottom_line                  ;
-call                    write_string                    ;
 call                    write_newline                   ;
                         call address_entry              ; returns with address in HL
                         call write_newline              ;
@@ -402,7 +398,6 @@ address_entry:          ld hl,buffer                    ; location for entered s
                         ret                             ;
 address_entry_error:    ld hl,address_error_msg         ;
                         call write_string               ;
-call                    write_newline
                         jp address_entry                ;
 
 
