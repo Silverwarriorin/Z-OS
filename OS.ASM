@@ -224,7 +224,7 @@ ret
 
 
 ; string and jumps for parsing
-parse_table:            
+parse_table:
 defw                    dump_string,dump_jump           ;
 defw                    reboot_string,reboot_jump       ;
 defw                    help_string,help_jump,qu_string,help_jump;
@@ -241,24 +241,24 @@ f_msg:                  defm "Respects Paid\n\r",0      ;
 
 address_error_msg:      defm "Invalid address",0        ;
 commands:               defm "nhelp,?,dump,reboot,cls,clear,exit",0 ;
-top_line:               defm "\033[38;5;14;48;5;14m______________________________________________________________________________\033[38;5;15;48;5;0m",0;
-blank_line:             defm "\033[38;5;14;48;5;14m|                                                                            |\033[38;5;15;48;5;0m",0;
+top_line:               defm "\033[38;5;14;48;5;14m________________________________________________________________________________",0;
+blank_line:             defm "\033[38;5;14;48;5;14m|                                                                            |",0;
 bottom_line:            defm "\033[38;5;14;48;5;14m|____________________________________________________________________________|\033[38;5;15;48;5;0m",0;
-intro_line:             defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mWelcome to Z-OS 3.2                                                        \033[38;5;14;48;5;14m|",0;
-intro_line2:            defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mProgrammed by Gabe W.                                                      \033[38;5;14;48;5;14m|",0;
-intro_line3:            defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mROM Version 8                                                              \033[38;5;14;48;5;14m|",0;
-intro_line4:            defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mReady.                                                                     \033[38;5;14;48;5;14m|",0;
-help_title              defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mWelcome to the command list, here you will find what every command does!   \033[38;5;14;48;5;14m|",0;
-help_line_help          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mHelp and ? are the same command, they both take you here!                  \033[38;5;14;48;5;14m|",0;
-help_line_dump          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mDump will display the contents of a memory address that you specify        \033[38;5;14;48;5;14m|",0;
-help_line_reboot        defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mReboot will bring you back to the welcome screen, in case you need info    \033[38;5;14;48;5;14m|",0;
-help_line_reboot2       defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mfrom there                                                                 \033[38;5;14;48;5;14m|",0;
-help_line_cls           defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mCls and clear both just clear the screen                                   \033[38;5;14;48;5;14m|",0;
-help_line_exit          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mExit will bring you back to the ROM, you need to jump to 0800 to get       \033[38;5;14;48;5;14m|",0;
-help_line_exit2         defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mback to Z-OS                                                               \033[38;5;14;48;5;14m|",0;
-dump_message:           defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mMemory Dump Utility                                                        \033[38;5;14;48;5;14m|",0;
-dump_message2:          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mDisplays a 256 byte block of memory                                        \033[38;5;14;48;5;14m|",0;
-address_entry_msg:      defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mEnter 4 digit memory address                                               \033[38;5;14;48;5;14m|",0;
+intro_line:             defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mWelcome to Z-OS 3.2.1\033[38;5;14;48;5;14m                                                      |",0;
+intro_line2:            defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mProgrammed by Gabe W. \033[38;5;14;48;5;14m                                                     |",0;
+intro_line3:            defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mROM Version 8 \033[38;5;14;48;5;14m                                                             |",0;
+intro_line4:            defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mReady. \033[38;5;14;48;5;14m                                                                    |",0;
+help_title              defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mWelcome to the command list, here you will find what every command does! \033[38;5;14;48;5;14m  |",0;
+help_line_help          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mHelp and ? are the same command, they both take you here! \033[38;5;14;48;5;14m                 |",0;
+help_line_dump          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mDump will display the contents of a memory address that you specify \033[38;5;14;48;5;14m       |",0;
+help_line_reboot        defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mReboot will bring you back to the welcome screen, in case you need info \033[38;5;14;48;5;14m   |",0;
+help_line_reboot2       defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mfrom there \033[38;5;14;48;5;14m|                                                                ",0;
+help_line_cls           defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mCls and clear both just clear the screen \033[38;5;14;48;5;14m                                  |",0;
+help_line_exit          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mExit will bring you back to the ROM, you need to jump to 0800 to get \033[38;5;14;48;5;14m|      ",0;
+help_line_exit2         defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mback to Z-OS \033[38;5;14;48;5;14m|                                                              ",0;
+dump_message:           defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mMemory Dump Utility \033[38;5;14;48;5;14m|                                                       ",0;
+dump_message2:          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mDisplays a 256 byte block of memory \033[38;5;14;48;5;14m|                                       ",0;
+address_entry_msg:      defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mEnter 4 digit memory address \033[38;5;14;48;5;14m|                                              ",0;
 
 
 
@@ -278,7 +278,7 @@ call                    write_char                      ;
 
 
 
-no_match_msg:           defm "Illegal Command",0        ;
+no_match_msg:           defm "Illegal Command ",0        ;
 no_match_string:        defm 0,0                        ;
 dump_string:            defm "dump",0                   ;
 reboot_string:          defm "reboot",0                 ;

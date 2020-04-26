@@ -224,14 +224,13 @@ ret
 
 
 ; string and jumps for parsing
-parse_table:            
+parse_table:
 defw                    dump_string,dump_jump           ;
 defw                    reboot_string,reboot_jump       ;
 defw                    help_string,help_jump,qu_string,help_jump;
 defw                    cls_string,cls_jump,clear_string,cls_jump;
 defw                    exit_string,exit_jump           ;
 defw                    down_string,down_jump           ;
-defw                    hi_res_string,high_jump         ;
 defw                    no_match_string,no_match_jump   ;
 
 
@@ -242,24 +241,24 @@ f_msg:                  defm "Respects Paid\n\r",0      ;
 
 address_error_msg:      defm "Invalid address",0        ;
 commands:               defm "nhelp,?,dump,reboot,cls,clear,exit",0 ;
-top_line:               defm "______________________________________________________________________________",0;
-blank_line:             defm "|                                                                            |",0;
-bottom_line:            defm "|____________________________________________________________________________|",0;
-intro_line:             defm "| Welcome to Z-OS 3.0                                                        |",0;
-intro_line2:            defm "| Programmed by Gabe W.                                                      |",0;
-intro_line3:            defm "| ROM Version 8                                                              |",0;
-intro_line4:            defm "| Ready.                                                                     |",0;
-help_title              defm "| Welcome to the command list, here you will find what every command does!   |",0;
-help_line_help          defm "| Help and ? are the same command, they both take you here!                  |",0;
-help_line_dump          defm "| Dump will display the contents of a memory address that you specify        |",0;
-help_line_reboot        defm "| Reboot will bring you back to the welcome screen, in case you need info    |",0;
-help_line_reboot2       defm "| from there                                                                 |",0;
-help_line_cls           defm "| Cls and clear both just clear the screen                                   |",0;
-help_line_exit          defm "| Exit will bring you back to the ROM, you need to jump to 0800 to get       |",0;
-help_line_exit2         defm "| back to Z-OS                                                               |",0;
-dump_message:           defm "| Memory Dump Utility                                                        |",0;
-dump_message2:          defm "| Displays a 256 byte block of memory                                        |",0;
-address_entry_msg:      defm "| Enter 4 digit memory address                                               |",0;
+top_line:               defm "\033[38;5;14;48;5;14m______________________________________________________________________________",0;
+blank_line:             defm "\033[38;5;14;48;5;14m|                                                                            |",0;
+bottom_line:            defm "\033[38;5;14;48;5;14m|____________________________________________________________________________|\033[38;5;15;48;5;0m",0;
+intro_line:             defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mWelcome to Z-OS 3.2                                                        \033[38;5;14;48;5;14m|",0;
+intro_line2:            defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mProgrammed by Gabe W.                                                      \033[38;5;14;48;5;14m|",0;
+intro_line3:            defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mROM Version 8                                                              \033[38;5;14;48;5;14m|",0;
+intro_line4:            defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mReady.                                                                     \033[38;5;14;48;5;14m|",0;
+help_title              defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mWelcome to the command list, here you will find what every command does!   \033[38;5;14;48;5;14m|",0;
+help_line_help          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mHelp and ? are the same command, they both take you here!                  \033[38;5;14;48;5;14m|",0;
+help_line_dump          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mDump will display the contents of a memory address that you specify        \033[38;5;14;48;5;14m|",0;
+help_line_reboot        defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mReboot will bring you back to the welcome screen, in case you need info    \033[38;5;14;48;5;14m|",0;
+help_line_reboot2       defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mfrom there                                                                 \033[38;5;14;48;5;14m|",0;
+help_line_cls           defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mCls and clear both just clear the screen                                   \033[38;5;14;48;5;14m|",0;
+help_line_exit          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mExit will bring you back to the ROM, you need to jump to 0800 to get       \033[38;5;14;48;5;14m|",0;
+help_line_exit2         defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mback to Z-OS                                                               \033[38;5;14;48;5;14m|",0;
+dump_message:           defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mMemory Dump Utility                                                        \033[38;5;14;48;5;14m|",0;
+dump_message2:          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mDisplays a 256 byte block of memory                                        \033[38;5;14;48;5;14m|",0;
+address_entry_msg:      defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mEnter 4 digit memory address                                               \033[38;5;14;48;5;14m|",0;
 
 
 
@@ -289,7 +288,6 @@ cls_string              defm "cls",0                    ;
 clear_string            defm "clear",0                  ;
 exit_string             defm "exit",0                   ;
 down_string             defm "down",0                   ;
-hi_res_string           defm "hi-res",0                 ;
 
 
 
@@ -509,49 +507,66 @@ jp                      begin_ZDOS                      ;
 
 
 
-; ; Super mega cool hi-res stuff uwu
-
-begin_hires:            ld sp,ROM_MONITOR_STACK         ;
-call                    cls                             ;
-call                    write_newline                   ;
-ld                      hl,in01                         ;
-call                    write_string                    ;
-ld                      hl,in02                         ;
-call                    write_string                    ;
-ld                      hl,in03                         ;
-call                    write_string                    ;
-                        ld hl,in04                      ;
-call                    write_string                    ;
-ld                      hl,in05                         ;
-call                    write_string                    ;
-ld                      hl,in06                         ;
-call                    write_string                    ;
-ld                      hl,in07                         ;
-call                    write_string                    ;
-ld                      hl,in08                         ;
-call                    write_string                    ;
-begin_ZDOS01:           call write_newline              ;
-ld                      a,07eh                          ;
-call                    write_char                      ;
-ld                      hl,buffer                       ;
-call                    get_line                        ;
-call                    write_newline                   ;
-call                    parse                           ;
-jp                      (hl)                            ;
-
-
-
-
-; ;hi-res-strings
-
-in01    defm "\r\n\033[92;40m `8.`888b                 ,8' 8 8888888888   8 8888         ,o888888o.        ,o888888o.           ,8.       ,8.          8 8888888888             8888888 8888888888 ,o888888o.                8888888888',8888' 8 888888888o.          ,o888888o.       d888888o. \r\n",0;
-in02    defm "\033[93;40m  `8.`888b               ,8'  8 8888         8 8888        8888     `88.   . 8888     `88.        ,888.     ,888.         8 8888                         8 8888    . 8888     `88.                     ,8',8888'  8 8888    `^888.    . 8888     `88.   .`8888:' `88. \r\n",0;
 
 
 
 
 
 
-high_jump:              
-jp                      begin_hires                     ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
