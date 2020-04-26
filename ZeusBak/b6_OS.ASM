@@ -150,29 +150,33 @@ call                    write_char                      ;
 ld                      a,00ah                          ;
 call                    write_char                      ;
 ret
+
+
 begin_os:               ld sp,ROM_MONITOR_STACK         ;
 call                    cls                             ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,top_line                     ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,intro_line                   ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,intro_line2                  ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,intro_line3                  ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,intro_line4                  ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,bottom_line                  ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
+
+
 begin_ZDOS:             call write_newline              ;
-ld                      a,07eh                        ;
+ld                      a,07eh                          ;
 call                    write_char                      ;
 ld                      hl,buffer                       ;
 call                    get_line                        ;
@@ -220,41 +224,42 @@ ret
 
 
 ; string and jumps for parsing
-parse_table:
+parse_table:            
 defw                    dump_string,dump_jump           ;
 defw                    reboot_string,reboot_jump       ;
 defw                    help_string,help_jump,qu_string,help_jump;
 defw                    cls_string,cls_jump,clear_string,cls_jump;
 defw                    exit_string,exit_jump           ;
 defw                    down_string,down_jump           ;
+defw                    hi_res_string,high_jump         ;
 defw                    no_match_string,no_match_jump   ;
 
 
 
 ; messages
 
-f_msg:                  defm "Respects Paid\n\r",0  ;
+f_msg:                  defm "Respects Paid\n\r",0      ;
 
-address_error_msg:      defm "Invalid address",0    ;
+address_error_msg:      defm "Invalid address",0        ;
 commands:               defm "nhelp,?,dump,reboot,cls,clear,exit",0 ;
-top_line:               defm "______________________________________________________________________________",0
-blank_line:             defm "|                                                                            |",0
-bottom_line:            defm "|____________________________________________________________________________|",0
-intro_line:             defm "| Welcome to Z-OS 2.5                                                        |",0
-intro_line2:            defm "| Programmed by Gabe W.                                                      |",0
-intro_line3:            defm "| ROM Version 8                                                              |",0
-intro_line4:            defm "| Ready.                                                                     |",0
-help_title              defm "| Welcome to the command list, here you will find what every command does!   |",0
-help_line_help          defm "| Help and ? are the same command, they both take you here!                  |",0
-help_line_dump          defm "| Dump will display the contents of a memory address that you specify        |",0
-help_line_reboot        defm "| Reboot will bring you back to the welcome screen, in case you need info    |",0
-help_line_reboot2       defm "| from there                                                                 |",0
-help_line_cls           defm "| Cls and clear both just clear the screen                                   |",0
-help_line_exit          defm "| Exit will bring you back to the ROM, you need to jump to 0800 to get       |",0
-help_line_exit2         defm "| back to Z-OS                                                               |",0
-dump_message:      defm "| Memory Dump Utility                                                        |",0
-dump_message2:          defm "| Displays a 256 byte block of memory                                        |",0
-address_entry_msg:      defm "| Enter 4 digit memory address                                               |",0
+top_line:               defm "______________________________________________________________________________",0;
+blank_line:             defm "|                                                                            |",0;
+bottom_line:            defm "|____________________________________________________________________________|",0;
+intro_line:             defm "| Welcome to Z-OS 3.0                                                        |",0;
+intro_line2:            defm "| Programmed by Gabe W.                                                      |",0;
+intro_line3:            defm "| ROM Version 8                                                              |",0;
+intro_line4:            defm "| Ready.                                                                     |",0;
+help_title              defm "| Welcome to the command list, here you will find what every command does!   |",0;
+help_line_help          defm "| Help and ? are the same command, they both take you here!                  |",0;
+help_line_dump          defm "| Dump will display the contents of a memory address that you specify        |",0;
+help_line_reboot        defm "| Reboot will bring you back to the welcome screen, in case you need info    |",0;
+help_line_reboot2       defm "| from there                                                                 |",0;
+help_line_cls           defm "| Cls and clear both just clear the screen                                   |",0;
+help_line_exit          defm "| Exit will bring you back to the ROM, you need to jump to 0800 to get       |",0;
+help_line_exit2         defm "| back to Z-OS                                                               |",0;
+dump_message:           defm "| Memory Dump Utility                                                        |",0;
+dump_message2:          defm "| Displays a 256 byte block of memory                                        |",0;
+address_entry_msg:      defm "| Enter 4 digit memory address                                               |",0;
 
 
 
@@ -265,15 +270,16 @@ address_entry_msg:      defm "| Enter 4 digit memory address                    
 
 
 
-downline:               ld a,00Dh
-call write_char
-ld                      a,00Ah
-call write_char
+
+downline:               ld a,00Dh                       ;
+call                    write_char                      ;
+ld                      a,00Ah                          ;
+call                    write_char                      ;
 
 
 
 
-no_match_msg:           defm "Illegal Command",0;
+no_match_msg:           defm "Illegal Command",0        ;
 no_match_string:        defm 0,0                        ;
 dump_string:            defm "dump",0                   ;
 reboot_string:          defm "reboot",0                 ;
@@ -283,6 +289,7 @@ cls_string              defm "cls",0                    ;
 clear_string            defm "clear",0                  ;
 exit_string             defm "exit",0                   ;
 down_string             defm "down",0                   ;
+hi_res_string           defm "hi-res",0                 ;
 
 
 
@@ -297,11 +304,22 @@ jp                      begin_ZDOS                      ;
 
 
 
-dump_jump:         call cls;
-  ld hl,top_line      ; Display greeting
+dump_jump:              call cls                        ;
+                        ld hl,top_line                  ; Display greeting
                         call write_string               ;
+call                    write_newline                   ;
+ld                      hl, dump_message                ;
+call                    write_string                    ;
+call                    write_newline                   ;
+ld                      hl, dump_message2               ;
+call                    write_string                    ;
+call                    write_newline                   ;
                         ld hl,address_entry_msg         ; get ready to get address
                         call write_string               ;
+call                    write_newline                   ;
+ld                      hl,bottom_line                  ;
+call                    write_string                    ;
+call                    write_newline                   ;
                         call address_entry              ; returns with address in HL
                         call write_newline              ;
                         call memory_dump                ;
@@ -321,8 +339,8 @@ jp                      $0471                           ;
 
 
 
-down_jump:              call downline
-jp                      begin_ZDOS
+down_jump:              call downline                   ;
+jp                      begin_ZDOS                      ;
 ; Memory dump
 ; Displays a 256-byte block of memory in 16-byte rows.
 ; Called with address of start of block in HL
@@ -390,6 +408,7 @@ address_entry:          ld hl,buffer                    ; location for entered s
                         ret                             ;
 address_entry_error:    ld hl,address_error_msg         ;
                         call write_string               ;
+call                    write_newline                   ;
                         jp address_entry                ;
 
 
@@ -442,54 +461,114 @@ hex_to_nybble_err:      ld a,0ffh                       ; error value
 help_jump:              call cls                        ;
                         ld hl,top_line                  ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,help_title                   ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,blank_line                   ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,help_line_help               ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,blank_line                   ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,help_line_dump               ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,blank_line                   ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,help_line_reboot             ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,help_line_reboot2            ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,blank_line                   ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,help_line_cls                ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,blank_line                   ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,help_line_exit               ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,help_line_exit2              ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 ld                      hl,bottom_line                  ;
 call                    write_string                    ;
-call                    write_newline
+call                    write_newline                   ;
 
 jp                      begin_ZDOS                      ;
 
 
 
+; ; Super mega cool hi-res stuff uwu
+
+begin_hires:            ld sp,ROM_MONITOR_STACK         ;
+call                    cls                             ;
+call                    write_newline                   ;
+ld                      hl,in01                         ;
+call                    write_string                    ;
+ld                      hl,in02                         ;
+call                    write_string                    ;
+ld                      hl,in03                         ;
+call                    write_string                    ;
+                        ld hl,in04                      ;
+call                    write_string                    ;
+ld                      hl,in05                         ;
+call                    write_string                    ;
+ld                      hl,in06                         ;
+call                    write_string                    ;
+ld                      hl,in07                         ;
+call                    write_string                    ;
+ld                      hl,in08                         ;
+call                    write_string                    ;
+ld                      hl,in09                         ;
+call                    write_string                    ;
+ld                      hl,in010                         ;
+call                    write_string                    ;
+begin_ZDOS01:           call write_newline              ;
+ld                      a,07eh                          ;
+call                    write_char                      ;
+ld                      hl,buffer                       ;
+call                    get_line                        ;
+call                    write_newline                   ;
+call                    parse                           ;
+jp                      (hl)                            ;
 
 
+
+
+; ;hi-res-strings
+
+in01    defm "\r\n\033[92;40m `8.`888b                 ,8' 8 8888888888   8 8888         ,o888888o.        ,o888888o.           ,8.       ,8.          8 8888888888             8888888 8888888888 ,o888888o.                8888888888',8888' 8 888888888o.          ,o888888o.       d888888o. \r\n",0;
+in02    defm "\033[93;40m  `8.`888b               ,8'  8 8888         8 8888        8888     `88.   . 8888     `88.        ,888.     ,888.         8 8888                         8 8888    . 8888     `88.                     ,8',8888'  8 8888    `^888.    . 8888     `88.   .`8888:' `88. \r\n",0;
+in03    defm "\033[94;40m   `8.`888b             ,8'   8 8888         8 8888     ,8 8888       `8. ,8 8888       `8b      .`8888.   .`8888.        8 8888                         8 8888   ,8 8888       `8b                   ,8',8888'   8 8888        `88. ,8 8888       `8b  8.`8888.   Y8 \r\n",0;
+in04    defm "\033[95;40m    `8.`888b     .b    ,8'    8 8888         8 8888     88 8888           88 8888        `8b    ,8.`8888. ,8.`8888.       8 8888                         8 8888   88 8888        `8b                 ,8',8888'    8 8888         `88 88 8888        `8b `8.`8888. \r\n",0;
+in05    defm "\033[96;40m     `8.`888b    88b  ,8'     8 888888888888 8 8888     88 8888           88 8888         88   ,8'8.`8888,8^8.`8888.      8 888888888888                 8 8888   88 8888         88                ,8',8888'     8 8888          88 88 8888         88  `8.`8888. \r\n",0;
+in06    defm "\033[97;40m      `8.`888b .`888b,8'      8 8888         8 8888     88 8888           88 8888         88  ,8' `8.`8888' `8.`8888.     8 8888                         8 8888   88 8888         88               ,8',8888'      8 8888          88 88 8888         88   `8.`8888. \r\n",0;
+in07    defm "\033[96;40m       `8.`888b8.`8888'       8 8888         8 8888     88 8888           88 8888        ,8P ,8'   `8.`88'   `8.`8888.    8 8888                         8 8888   88 8888        ,8P              ,8',8888'       8 8888         ,88 88 8888        ,8P    `8.`8888. \r\n",0;
+in08    defm "\033[95;40m        `8.`888`8.`88'        8 8888         8 8888     `8 8888       .8' `8 8888       ,8P ,8'     `8.`'     `8.`8888.   8 8888                         8 8888   `8 8888       ,8P              ,8',8888'        8 8888        ,88' `8 8888       ,8P 8b   `8.`8888. \r\n",0;
+in09    defm "\033[94;40m         `8.`8' `8,`'         8 8888         8 8888        8888     ,88'   ` 8888     ,88' ,8'       `8        `8.`8888.  8 8888                         8 8888    ` 8888     ,88'              ,8',8888'         8 8888    ,o88P'    ` 8888     ,88'  `8b.  ;8.`8888 \r\n",0;
+in010   defm "\033[93;40m          `8.`   `8'          8 888888888888 8 888888888888 `8888888P'        `8888888P'  ,8'         `         `8.`8888. 8 888888888888                 8 8888       `8888888P'               ,8',8888888888888  8 888888888P'          `8888888P'     `Y8888P ,88P' \r\n",0;
+
+
+
+
+
+
+
+
+
+
+
+high_jump:              
+jp                      begin_hires                     ;
 
