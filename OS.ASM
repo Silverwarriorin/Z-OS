@@ -141,6 +141,70 @@ call                    write_newline                   ;
 call                    write_newline                   ;
 call                    write_newline                   ;
 call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
+call                    write_newline                   ;
 
 
 
@@ -231,6 +295,7 @@ defw                    help_string,help_jump,qu_string,help_jump;
 defw                    cls_string,cls_jump,clear_string,cls_jump;
 defw                    exit_string,exit_jump           ;
 defw                    down_string,down_jump           ;
+defw                    hi_res_string,hi_res_jump       ;
 defw                    no_match_string,no_match_jump   ;
 
 
@@ -241,10 +306,10 @@ f_msg:                  defm "Respects Paid\n\r",0      ;
 
 address_error_msg:      defm "Invalid address",0        ;
 commands:               defm "nhelp,?,dump,reboot,cls,clear,exit",0 ;
-top_line:               defm "\033[38;5;14;48;5;14m________________________________________________________________________________",0;
-blank_line:             defm "\033[38;5;14;48;5;14m|                                                                            |",0;
+top_line:               defm "\007\033[38;5;14;48;5;14m___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________",0;
+blank_line:             defm "\033[38;5;14;48;5;14m|                                                                                                                                                                                                     |",0;
 bottom_line:            defm "\033[38;5;14;48;5;14m|____________________________________________________________________________|\033[38;5;15;48;5;0m",0;
-intro_line:             defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mWelcome to Z-OS 3.2.1\033[38;5;14;48;5;14m                                                      |",0;
+intro_line:             defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mWelcome to Z-OS 3.3 \033[38;5;14;48;5;14m                                                      |",0;
 intro_line2:            defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mProgrammed by Gabe W. \033[38;5;14;48;5;14m                                                     |",0;
 intro_line3:            defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mROM Version 8 \033[38;5;14;48;5;14m                                                             |",0;
 intro_line4:            defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mReady. \033[38;5;14;48;5;14m                                                                    |",0;
@@ -259,6 +324,24 @@ help_line_exit2         defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mback t
 dump_message:           defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mMemory Dump Utility \033[38;5;14;48;5;14m|                                                       ",0;
 dump_message2:          defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mDisplays a 256 byte block of memory \033[38;5;14;48;5;14m|                                       ",0;
 address_entry_msg:      defm "\033[38;5;14;48;5;14m| \033[38;5;13;48;5;14mEnter 4 digit memory address \033[38;5;14;48;5;14m|                                              ",0;
+hi_intro01:             defm "\033[38;5;27m      ___           ___           ___       ___           ___           ___           ___                    ___           ___                    ___           ___           ___           ___",0
+hi_intro02:             defm "\r\n\033[38;5;63m     /\\__\\         /\\  \\         /\\__\\     /\\  \\         /\\  \\         /\\__\\         /\\  \\                  /\\  \\         /\\  \\                  /\\  \\         /\\  \\         /\\  \\         /\\  \\",0
+hi_intro03:             defm "\r\n\033[38;5;99m    /:/ _/_       /::\\  \\       /:/  /    /::\\  \\       /::\\  \\       /::|  |       /::\\  \\                 \\:\\  \\       /::\\  \\                 \\:\\  \\       /::\\  \\       /::\\  \\       /::\\  \\",0
+hi_intro04:             defm "\r\n\033[38;5;135m   /:/ /\\__\\     /:/\\:\\  \\     /:/  /    /:/\\:\\  \\     /:/\\:\\  \\     /:|:|  |      /:/\\:\\  \\                 \\:\\  \\     /:/\\:\\  \\                 \\:\\  \\     /:/\\:\\  \\     /:/\\:\\  \\     /:/\\ \\  \\",0
+hi_intro05:             defm "\r\n\033[38;5;171m  /:/ /:/ _/_   /::\\~\\:\\  \\   /:/  /    /:/  \\:\\  \\   /:/  \\:\\  \\   /:/|:|__|__   /::\\~\\:\\  \\                /::\\  \\   /:/  \\:\\  \\                 \\:\\  \\   /:/  \\:\\__\\   /:/  \\:\\  \\   _\\:\\~\\ \\  \\",0
+hi_intro06:             defm "\r\n\033[38;5;207m /:/_/:/ /\\__\\ /:/\\:\\ \\:\\__\\ /:/__/    /:/__/ \\:\\__\\ /:/__/ \\:\\__\\ /:/ |::::\\__\\ /:/\\:\\ \\:\\__\\              /:/\\:\\__\\ /:/__/ \\:\\__\\          _______\\:\\__\\ /:/__/ \\:|__| /:/__/ \\:\\__\\ /\\ \\:\\ \\ \\__\\",0
+hi_intro07:             defm "\r\n\033[38;5;171m \\:\\/:/ /:/  / \\:\\~\\:\\ \\/__/ \\:\\  \\    \\:\\  \\  \\/__/ \\:\\  \\ /:/  / \\/__/~~/:/  / \\:\\~\\:\\ \\/__/             /:/  \\/__/ \\:\\  \\ /:/  /          \\::::::::/__/ \\:\\  \\ /:/  / \\:\\  \\ /:/  / \\:\\ \\:\\ \\/__/",0
+hi_intro08:             defm "\r\n\033[38;5;135m  \\::/_/:/  /   \\:\\ \\:\\__\\    \\:\\  \\    \\:\\  \\        \\:\\  /:/  /        /:/  /   \\:\\ \\:\\__\\              /:/  /       \\:\\  /:/  /            \\:\\~~\\~~      \\:\\  /:/  /   \\:\\  /:/  /   \\:\\ \\:\\__\\",0
+hi_intro09:             defm "\r\n\033[38;5;99m   \\:\\/:/  /     \\:\\ \\/__/     \\:\\  \\    \\:\\  \\        \\:\\/:/  /        /:/  /     \\:\\ \\/__/              \\/__/         \\:\\/:/  /              \\:\\  \\        \\:\\/:/  /     \\:\\/:/  /     \\:\\/:/  /",0
+hi_intro010:            defm "\r\n\033[38;5;63m    \\::/  /       \\:\\__\\        \\:\\__\\    \\:\\__\\        \\::/  /        /:/  /       \\:\\__\\                               \\::/  /                \\:\\__\\        \\::/__/       \\::/  /       \\::/  /",0
+hi_intro011:            defm "\r\n\033[38;5;27m     \\/__/         \\/__/         \\/__/     \\/__/         \\/__/         \\/__/         \\/__/                                \\/__/                  \\/__/         ~~            \\/__/         \\/__/",0
+
+
+
+
+
+
+
 
 
 
@@ -288,7 +371,7 @@ cls_string              defm "cls",0                    ;
 clear_string            defm "clear",0                  ;
 exit_string             defm "exit",0                   ;
 down_string             defm "down",0                   ;
-
+hi_res_string           defm "hires",0                  ;
 
 
 ; jumps
@@ -509,64 +592,38 @@ jp                      begin_ZDOS                      ;
 
 
 
+;; High Resolution Mode
+hi_res_jump
+begin_os_hires: call cls
+ld hl,hi_intro01
+call write_string
+ld hl,hi_intro02
+call write_string
+ld hl,hi_intro03
+call write_string
+ld hl,hi_intro04
+call write_string
+ld hl,hi_intro05
+call write_string
+ld hl,hi_intro06
+call write_string
+ld hl,hi_intro07
+call write_string
+ld hl,hi_intro08
+call write_string
+ld hl,hi_intro09
+call write_string
+ld hl,hi_intro010
+call write_string
+ld hl,hi_intro011
+call write_string
+call write_newline
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+begin_ZDOS_Hi:             call write_newline              ;
+ld                      a,07eh                          ;
+call                    write_char                      ;
+ld                      hl,buffer                       ;
+call                    get_line                        ;
+call                    write_newline                   ;
+call                    parse                           ;
+jp                      (hl)                            ;
