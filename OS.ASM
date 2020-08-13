@@ -579,8 +579,120 @@ jp                      begin_ZDOS                      ;
 
 
 
-;; High Resolution Mode
-hi_res_jump
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;; Super Mega Cool Startup screen
+
+startup_screen:  ld sp,ROM_MONITOR_STACK         ;
+call cls
+ld  hl,startup_title
+call write_string
+call write_newline              ;
+ld hl,hi_intro012
+call write_string
+ld hl,hi_intro013
+call write_string
+call write_newline
+ld                      a,03Fh                          ;
+call                    write_char                      ;
+ld                      hl,buffer                       ;
+call                    get_line                        ;
+call                    write_newline                   ;
+call                    parse_startup                           ;
+jp                      (hl)                            ;
+
+
+
+parse_startup:                  ld bc,parse_table_startup               ;
+
+parse_start_startup:            ld a,(bc)                       ;
+ld                      e,a                             ;
+inc                     bc                              ;
+ld                      a,(bc)                          ;
+ld                      d,a                             ;
+ld                      a,(de)                          ;
+or                      000h                            ;
+jp                      z,parser_exit_startup                  ;
+ld                      hl,buffer                       ;
+
+match_loop_startup:             cp (hl)                         ;
+jp                      nz,no_match_startup                     ;
+or                      000h                            ;
+jp                      z,parser_exit_startup                   ;
+inc                     de                              ;
+ld                      a,(de)                          ;
+inc                     hl                              ;
+jp                      match_loop                      ;
+
+no_match_startup:                inc bc                          ;
+inc                     bc                              ;
+inc                     bc                              ;
+jp                      parse_start_startup                   ;
+
+
+parser_exit_startup:            inc bc                          ;
+ld                      a,(bc)                          ;
+ld                      l,a                             ;
+inc                     bc                              ;
+ld                      a,(bc)                          ;
+ld                      h,a                             ;
+ret
+
+
+
+;; string and jumps for parsing
+parse_table_startup:
+defw                    lowres_string,lowres_jump           ;
+defw                    hi_res_string,hi_res_jump       ;
+defw                    no_match_string,no_match_jump_startup   ;
+
+lowres_jump: call begin_os
+
+
+hi_res_jump: call begin_os_hires
+
+
+;; Strings
+
+startup_title:      defm  "\033[38;5;21m      ::::::::: \r\n\033[38;5;63m          :+: \r\n\033[38;5;99m        +:+ \r\n\033[38;5;135m      +#+ \r\n\033[38;5;171m    +#+ \r\n\033[38;5;213m  #+# \r\n\033[38;5;177m#########",0
+lowres_string:      defm  "lowres",0;
+hi_res_string:      defm  "hires",0;
+colorwelcome:       defm  ""
+
+;;jumps for startup
+
+no_match_jump_startup:          ld hl,no_match_msg              ;
+call                    write_string                    ;
+ld                      hl,buffer                       ;
+call                    write_string                    ;
+jp                      startup_screen                      ;
+
+
+
+
+
+
+
+
+
+
+
+
+;;Hi-res Specific stuff
+
+
 begin_os_hires: call cls
 ld hl,hi_intro01
 call write_string
@@ -612,71 +724,40 @@ call                    write_char                      ;
 ld                      hl,buffer                       ;
 call                    get_line                        ;
 call                    write_newline                   ;
-call                    parse                           ;
+call                    parse_hires                           ;
 jp                      (hl)                            ;
 
 
+;;Hi-Res Specific Parsing
 
+parse_hi:                  ld bc,parse_table_hi               ;
 
-
-
-
-
-
-
-
-
-
-;; Super Mega Cool Startup screen
-
-startup_screen:  ld sp,ROM_MONITOR_STACK         ;
-call cls
-ld  hl,startup_title
-call write_string
-call write_newline              ;
-ld hl,hi_intro012
-call write_string
-ld hl,hi_intro013
-call write_string
-call write_newline
-ld                      a,03Fh                          ;
-call                    write_char                      ;
-ld                      hl,buffer                       ;
-call                    get_line                        ;
-call                    write_newline                   ;
-call                    parse2                           ;
-jp                      (hl)                            ;
-
-
-
-parse2:                  ld bc,parse_table2               ;
-
-parse_start2:            ld a,(bc)                       ;
+parse_start_hi:            ld a,(bc)                       ;
 ld                      e,a                             ;
 inc                     bc                              ;
 ld                      a,(bc)                          ;
 ld                      d,a                             ;
 ld                      a,(de)                          ;
 or                      000h                            ;
-jp                      z,parser_exit2                   ;
+jp                      z,parser_exit_hi                  ;
 ld                      hl,buffer                       ;
 
-match_loop2:             cp (hl)                         ;
-jp                      nz,no_match2                     ;
+match_loop_hi:             cp (hl)                         ;
+jp                      nz,no_match_hi                     ;
 or                      000h                            ;
-jp                      z,parser_exit2                   ;
+jp                      z,parser_exit_hi                   ;
 inc                     de                              ;
 ld                      a,(de)                          ;
 inc                     hl                              ;
 jp                      match_loop                      ;
 
-no_match2:                inc bc                          ;
+no_match_hi:                inc bc                          ;
 inc                     bc                              ;
 inc                     bc                              ;
-jp                      parse_start2                     ;
+jp                      parse_start_hi                     ;
 
 
-parser_exit2:            inc bc                          ;
+parser_exit_hi:            inc bc                          ;
 ld                      a,(bc)                          ;
 ld                      l,a                             ;
 inc                     bc                              ;
@@ -685,21 +766,23 @@ ld                      h,a                             ;
 ret
 
 
-
-;; string and jumps for parsing
-parse_table2:
-defw                    lowres_string,lowres_jump           ;
-defw                    hi_res_string,hi_res_jump       ;
+parse_table_hi:
+defw                    dump_string,dump_jump           ;
+defw                    reboot_string,reboot_jump       ;
+defw                    help_string,helphi_jump,qu_string,helphi_jump;
+defw                    cls_string,cls_jump,clear_string,cls_jump;
+defw                    exit_string,exit_jump           ;
+defw                    color_string,color_jump
 defw                    no_match_string,no_match_jump   ;
 
-lowres_jump: call begin_os
+no_match_jump_hi:          ld hl,no_match_msg              ;
+call                    write_string                    ;
+ld                      hl,buffer                       ;
+call                    write_string                    ;
+jp                      begin_ZDOS_Hi                      ;
 
 
-high_res_jump: call begin_os_hires
+;;jumps and commands
 
-
-;; Strings
-
-startup_title:      defm  "\033[38;5;21m      ::::::::: \r\n\033[38;5;63m          :+: \r\n\033[38;5;99m        +:+ \r\n\033[38;5;135m      +#+ \r\n\033[38;5;171m    +#+ \r\n\033[38;5;213m  #+# \r\n\033[38;5;177m#########",0
-lowres_string:      defm  "lowres",0;
-hi_res_string:      defm  "hires",0;
+color_jump: color equ 00d
+call write_newline

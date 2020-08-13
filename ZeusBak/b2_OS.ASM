@@ -533,7 +533,7 @@ ld hl,intro_msgh
 call write_string
 ld hl,intro_msgh2
 call write_string
-ld hl,intro_introh3
+ld hl,intro_msgh3
 call write_string
 ret
 

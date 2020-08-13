@@ -523,6 +523,7 @@ print_jump:
 call cls
 ld hl,intro_msgh
 call write_string
+ret
 
 
 
